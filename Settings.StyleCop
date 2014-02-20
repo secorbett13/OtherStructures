@@ -1,0 +1,20 @@
+<StyleCopSettings Version="105">
+  <Analyzers>
+    <Analyzer AnalyzerId="StyleCop.CSharp.DocumentationRules">
+      <Rules>
+        <Rule Name="FileMustHaveHeader">
+          <RuleSettings>
+            <BooleanProperty Name="Enabled">True</BooleanProperty>
+          </RuleSettings>
+        </Rule>
+      </Rules>
+      <AnalyzerSettings>
+        <StringProperty Name="Copyright">Copyright 2014, Scott Corbett. All rights reserved. More than likely the rights are going to be opened up. For now,
+all users are entitled to use the code as long as they include this notice in the header of any files used directly.
+Any compiled library made for Other Structures can be used free of charge. If the library is decompiled, the
+copyright notice needs to be inserted into the header of the decompiled files.</StringProperty>
+        <StringProperty Name="CompanyName">Scott Corbett</StringProperty>
+      </AnalyzerSettings>
+    </Analyzer>
+  </Analyzers>
+</StyleCopSettings>
