@@ -27,11 +27,23 @@ namespace OtherStructures.BinaryTrees
 		/// Initializes a new instance of the <see cref="Rope"/> class.
 		/// </summary>
 		/// <param name="rootString">
-		/// The root string.
+		/// The string that will be converted to a character array for the root rope node.
 		/// </param>
 		public Rope(string rootString)
 		{
 			this.Chars = rootString.ToCharArray();
+			this.Length = this.Chars.Length;
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Rope"/> class.
+		/// </summary>
+		/// <param name="rootChars">
+		/// The root chars.
+		/// </param>
+		public Rope(char[] rootChars)
+		{
+			this.Chars = rootChars;
 			this.Length = this.Chars.Length;
 		}
 
@@ -45,9 +57,49 @@ namespace OtherStructures.BinaryTrees
 		/// </summary>
 		public int Length { get; private set; }
 
+		/// <summary>
+		/// Gets the "left" <see cref="Rope"/> instance under the root.
+		/// </summary>
+		public Rope Left { get; private set; }
+
+		/// <summary>
+		/// Gets the next sibling.
+		/// </summary>
+		/// <remarks>
+		/// The next sibling is analagous to the right node on a binary tree
+		/// </remarks>
+		public Rope NextSibling { get; private set; }
+
+		/// <summary>
+		/// Appends the provided character array to the end of the <see cref="Rope"/>.
+		/// </summary>
+		/// <param name="newChars">
+		/// The new array of characters to be appended.
+		/// </param>
+		public void Append(char[] newChars)
+		{
+			var newRope = new Rope(newChars);
+			var newLeft = new Rope(this.Chars);
+			newLeft.NextSibling = this.NextSibling;
+
+			this.Left = newLeft;
+			this.NextSibling = newRope;
+		}
+
+		/// <summary>
+		/// Appends the provided string to the end of the <see cref="Rope"/>.
+		/// </summary>
+		/// <param name="newString">
+		/// The string of characters to be appended.
+		/// </param>
+		public void Append(string newString)
+		{
+			this.Append(newString.ToCharArray());
+		}
+
 		// insert(int index, string newString)
 		// insert(int index, char[] newArray)
-		// append(string)
+
 		// prepend(string)
 		// delete
 		// IndexOf(char c) => gets the first instance of...
@@ -57,28 +109,6 @@ namespace OtherStructures.BinaryTrees
 		public int IndexOf(char c)
 		{
 			throw new NotImplementedException();
-		}
-
-		private class Node
-		{
-			private char[] chars;
-
-			public Node(string rootString)
-			{
-				this.chars = rootString.ToCharArray();
-			}
-
-			public Node(char[] rootChars)
-			{
-				this.chars = rootChars;
-				this.NodeLength = this.chars.Length;
-			}
-
-			public int NodeLength { get; private set; }
-
-			public Node Left { get; set; }
-
-			public Node Sibling { get; set; }
 		}
 	}
 }
