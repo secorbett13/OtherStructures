@@ -1,12 +1,27 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Rope.cs" company="Scott Corbett">
-//   Copyright 2014, Scott Corbett. All rights reserved. More than likely the rights are going to be opened up. For now,
-//   all users are entitled to use the code as long as they include this notice in the header of any files used directly.
-//   Any compiled library made for Other Structures can be used free of charge. If the library is decompiled, the
-//   copyright notice needs to be inserted into the header of the decompiled files.
+//   Copyright (c) 2014, Scott Corbett
+//   
+//   Permission is hereby granted, free of charge, to any person obtaining a copy
+//   of this software and associated documentation files (the "Software"), to deal
+//   in the Software without restriction, including without limitation the rights
+//   to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//   copies of the Software, and to permit persons to whom the Software is
+//   furnished to do so, subject to the following conditions:
+//   
+//   The above copyright notice and this permission notice shall be included in
+//   all copies or substantial portions of the Software.
+//   
+//   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+//   INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+//   PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+//   HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+//   OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+//   SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // </copyright>
 // <summary>
-//   Defines the Rope type.
+//   Class implementation of the Rope data structure. The Rope data structure composed of 1 to n smaller strings
+//   and allows for efficiently storing and manipulating them as a very large string.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
