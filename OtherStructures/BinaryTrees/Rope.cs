@@ -93,12 +93,19 @@ namespace OtherStructures.BinaryTrees
 		/// </param>
 		public void Append(char[] newChars)
 		{
+			if (this.NextSibling != null)
+			{
+				this.NextSibling.Append(newChars);
+				return;
+			}
+
 			var newRope = new Rope(newChars);
 			var newLeft = new Rope(this.Chars);
 			newLeft.NextSibling = this.NextSibling;
 
 			this.Left = newLeft;
 			this.NextSibling = newRope;
+			this.Chars = null;
 		}
 
 		/// <summary>
@@ -115,7 +122,6 @@ namespace OtherStructures.BinaryTrees
 		// insert(int index, string newString)
 		// insert(int index, char[] newArray)
 
-		// prepend(string)
 		// delete
 		// IndexOf(char c) => gets the first instance of...
 		// Indexof(char c, int start) => gets the first instance of c starting at the provided index

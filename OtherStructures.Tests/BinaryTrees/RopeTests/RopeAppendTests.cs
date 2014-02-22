@@ -39,7 +39,8 @@ namespace OtherStructures.Tests.BinaryTrees.RopeTests
 	public class RopeAppendTests
 	{
 		/// <summary>
-		/// Verifies that <see cref="Rope.Append(char[])"/> correctly appends a Rope to the target instance.
+		/// Verifies that <see cref="Rope.Append(char[])"/> correctly appends a <see cref="Rope"/> to a 
+		/// <see cref="Rope"/> that does not have any child <see cref="Rope"/> entities.
 		/// </summary>
 		[TestMethod]
 		public void AppendWithCharArrayPutsNewCharArrayAtEndOfRope()
@@ -59,7 +60,27 @@ namespace OtherStructures.Tests.BinaryTrees.RopeTests
 		}
 
 		/// <summary>
-		/// Verifies that <see cref="Rope.Append(string)"/> correctly appends a Rope to the target instance.
+		/// Veirifies that <see cref="Rope.Append(char[])"/> sets the root rope of the chain to null
+		/// when appending to a <see cref="Rope"/> with no child <see cref="Rope"/> entities.
+		/// </summary>
+		[TestMethod]
+		public void AppendWithCharsNullsRootRopeChars()
+		{
+			// arrange
+			var rootValue = "test".ToCharArray();
+			var rootRope = new Rope(rootValue);
+			var insertValue = "again".ToCharArray();
+
+			// act
+			rootRope.Append(insertValue);
+
+			// assert
+			Assert.IsNull(rootRope.Chars);
+		}
+
+		/// <summary>
+		/// Verifies that <see cref="Rope.Append(string)"/> correctly appends a <see cref="Rope"/> to a 
+		/// <see cref="Rope"/> that does not have any child <see cref="Rope"/> entities.
 		/// </summary>
 		[TestMethod]
 		public void AppendWithStringPutsNewCharArrayAtEndOfRope()
@@ -75,6 +96,25 @@ namespace OtherStructures.Tests.BinaryTrees.RopeTests
 			CollectionAssert.AreEquivalent(rootValue, rootRope.Left.Chars);
 			CollectionAssert.AreEquivalent(InsertValue.ToCharArray(), rootRope.NextSibling.Chars);
 			Assert.AreEqual(rootValue.Length, rootRope.Length);
+		}
+
+		/// <summary>
+		/// Verifies that the when <see cref="Rope.Append(char[])"/> is called against a <see cref="Rope"/>
+		/// with child <see cref="Rope"/> entities that the new characters are placed at the end of the rope.
+		/// </summary>
+		[TestMethod]
+		public void AppendPlacesNewCharsAtEndOfRope()
+		{
+			// arrange
+			const string LastRopeChars = "end";
+			var rootRope = new Rope("start");
+			rootRope.Append("middle");
+
+			// act
+			rootRope.Append(LastRopeChars);
+
+			// assert
+			CollectionAssert.AreEquivalent(LastRopeChars.ToCharArray(), rootRope.NextSibling.NextSibling.Chars);
 		}
 	}
 }
