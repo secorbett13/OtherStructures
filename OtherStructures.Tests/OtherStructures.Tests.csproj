@@ -53,6 +53,7 @@
     <Compile Include="BinaryTrees\RopeTests\RopeAppendTests.cs" />
     <Compile Include="BinaryTrees\RopeTests\RopeDepthAndWidthTests.cs" />
     <Compile Include="BinaryTrees\RopeTests\RopeConstructorTests.cs" />
+    <Compile Include="BinaryTrees\RopeTests\RopeIndexOfCharTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
