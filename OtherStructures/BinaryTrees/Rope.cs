@@ -142,16 +142,8 @@ namespace OtherStructures.BinaryTrees
 			this.Value = null;
 		}
 
-		// insert(int index, string newString)
-		// insert(int index, char[] newArray)
-
-		// delete
-		// IndexOf(char c) => gets the first instance of...
-		// Indexof(char c, int start) => gets the first instance of c starting at the provided index
-		// ToString()
-
 		/// <summary>
-		/// The index of a particular string within this instance and all of it's children.
+		/// Finds the index of a particular character within this instance and all of it's children.
 		/// </summary>
 		/// <param name="c">
 		/// The character to be found.
@@ -163,5 +155,31 @@ namespace OtherStructures.BinaryTrees
 		{
 			throw new NotImplementedException();
 		}
+
+		/// <summary>
+		/// Finds the index of a particular character within the <see cref="Rope"/> starting at the
+		/// provided instance.
+		/// </summary>
+		/// <param name="c">
+		/// The character to be found.
+		/// </param>
+		/// <param name="start">
+		/// The start index. Ropes are considered to be "0 based" indexes.
+		/// </param>
+		/// <returns>
+		/// The <see cref="int"/>.
+		/// </returns>
+		public int IndexOf(char c, int start)
+		{
+			throw new NotImplementedException();
+		}
+
+		// insert(int index, string newString)
+		// insert(int index, char[] newArray)
+
+		// delete
+		// IndexOf(char c) => gets the first instance of...
+		// Indexof(char c, int start) => gets the first instance of c starting at the provided index
+		// ToString()
 	}
 }
