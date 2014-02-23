@@ -46,26 +46,26 @@ namespace OtherStructures.BinaryTrees
 		/// </param>
 		public Rope(string rootString)
 		{
-			this.Chars = rootString.ToCharArray();
-			this.Length = this.Chars.Length;
+			this.Value = rootString;
+			this.Length = this.Value.Length;
 		}
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Rope"/> class.
 		/// </summary>
-		/// <param name="rootChars">
+		/// <param name="rootValue">
 		/// The root chars.
 		/// </param>
-		public Rope(char[] rootChars)
+		public Rope(char[] rootValue)
 		{
-			this.Chars = rootChars;
-			this.Length = this.Chars.Length;
+			this.Value = new string(rootValue);
+			this.Length = this.Value.Length;
 		}
 
 		/// <summary>
 		/// Gets the character array for the current Rope. If the Rope has a "left" node, this field is null
 		/// </summary>
-		public char[] Chars { get; private set; }
+		public string Value { get; private set; }
 
 		/// <summary>
 		/// Gets the cached length of the root characters.
@@ -73,17 +73,41 @@ namespace OtherStructures.BinaryTrees
 		public int Length { get; private set; }
 
 		/// <summary>
-		/// Gets the "left" <see cref="Rope"/> instance under the root.
+		/// Gets or sets the "left" <see cref="Rope"/> instance under the root.
 		/// </summary>
-		public Rope Left { get; private set; }
+		public Rope Left { get; set; }
 
 		/// <summary>
-		/// Gets the next sibling.
+		/// Gets or sets the next sibling.
 		/// </summary>
 		/// <remarks>
 		/// The next sibling is analagous to the right node on a binary tree
 		/// </remarks>
-		public Rope NextSibling { get; private set; }
+		public Rope NextSibling { get; set; }
+
+		/// <summary>
+		/// Gets the depth of the <see cref="Rope"/>. The depth is calculated as the count of contiguous left
+		/// children nodes of the current <see cref="Rope"/>
+		/// </summary>
+		public int Depth 
+		{
+			get
+			{
+				return 1 + (this.Left != null ? this.Left.Depth : 0);
+			}
+		}
+
+		/// <summary>
+		/// Gets the width of the <see cref="Rope"/>. The width is calculated as the count of contiguous
+		/// "next sibling" nodes for the current instance.
+		/// </summary>
+		public int Width
+		{
+			get
+			{
+				return 1 + (this.NextSibling != null ? this.NextSibling.Width : 0);
+			}
+		}
 
 		/// <summary>
 		/// Appends the provided character array to the end of the <see cref="Rope"/>.
@@ -93,19 +117,7 @@ namespace OtherStructures.BinaryTrees
 		/// </param>
 		public void Append(char[] newChars)
 		{
-			if (this.NextSibling != null)
-			{
-				this.NextSibling.Append(newChars);
-				return;
-			}
-
-			var newRope = new Rope(newChars);
-			var newLeft = new Rope(this.Chars);
-			newLeft.NextSibling = this.NextSibling;
-
-			this.Left = newLeft;
-			this.NextSibling = newRope;
-			this.Chars = null;
+			this.Append(new string(newChars));
 		}
 
 		/// <summary>
@@ -116,7 +128,18 @@ namespace OtherStructures.BinaryTrees
 		/// </param>
 		public void Append(string newString)
 		{
-			this.Append(newString.ToCharArray());
+			if (this.NextSibling != null)
+			{
+				this.NextSibling.Append(newString);
+				return;
+			}
+
+			var newRope = new Rope(newString);
+			var newLeft = new Rope(this.Value) { NextSibling = this.NextSibling };
+
+			this.Left = newLeft;
+			this.NextSibling = newRope;
+			this.Value = null;
 		}
 
 		// insert(int index, string newString)
@@ -127,6 +150,15 @@ namespace OtherStructures.BinaryTrees
 		// Indexof(char c, int start) => gets the first instance of c starting at the provided index
 		// ToString()
 
+		/// <summary>
+		/// The index of a particular string within this instance and all of it's children.
+		/// </summary>
+		/// <param name="c">
+		/// The character to be found.
+		/// </param>
+		/// <returns>
+		/// The index of the first instance of the requested character.
+		/// </returns>
 		public int IndexOf(char c)
 		{
 			throw new NotImplementedException();

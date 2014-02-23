@@ -54,8 +54,8 @@ namespace OtherStructures.Tests.BinaryTrees.RopeTests
 			rootRope.Append(insertValue);
 
 			// assert
-			CollectionAssert.AreEquivalent(rootValue, rootRope.Left.Chars);
-			CollectionAssert.AreEquivalent(insertValue, rootRope.NextSibling.Chars);
+			CollectionAssert.AreEquivalent(rootValue, rootRope.Left.Value.ToCharArray());
+			CollectionAssert.AreEquivalent(insertValue, rootRope.NextSibling.Value.ToCharArray());
 			Assert.AreEqual(rootValue.Length, rootRope.Length);
 		}
 
@@ -75,7 +75,7 @@ namespace OtherStructures.Tests.BinaryTrees.RopeTests
 			rootRope.Append(insertValue);
 
 			// assert
-			Assert.IsNull(rootRope.Chars);
+			Assert.IsNull(rootRope.Value);
 		}
 
 		/// <summary>
@@ -93,8 +93,8 @@ namespace OtherStructures.Tests.BinaryTrees.RopeTests
 			rootRope.Append(InsertValue);
 
 			// assert
-			CollectionAssert.AreEquivalent(rootValue, rootRope.Left.Chars);
-			CollectionAssert.AreEquivalent(InsertValue.ToCharArray(), rootRope.NextSibling.Chars);
+			CollectionAssert.AreEquivalent(rootValue, rootRope.Left.Value.ToCharArray());
+			CollectionAssert.AreEquivalent(InsertValue.ToCharArray(), rootRope.NextSibling.Value.ToCharArray());
 			Assert.AreEqual(rootValue.Length, rootRope.Length);
 		}
 
@@ -114,7 +114,7 @@ namespace OtherStructures.Tests.BinaryTrees.RopeTests
 			rootRope.Append(LastRopeChars);
 
 			// assert
-			CollectionAssert.AreEquivalent(LastRopeChars.ToCharArray(), rootRope.NextSibling.NextSibling.Chars);
+			CollectionAssert.AreEquivalent(LastRopeChars.ToCharArray(), rootRope.NextSibling.NextSibling.Value.ToCharArray());
 		}
 	}
 }

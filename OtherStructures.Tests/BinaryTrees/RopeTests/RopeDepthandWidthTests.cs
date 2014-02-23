@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="RopeConstructorTests.cs" company="Scott Corbett">
+// <copyright file="RopeDepthAndWidthTests.cs" company="Scott Corbett">
 //   Copyright (c) 2014, Scott Corbett
 //   
 //   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -20,7 +20,7 @@
 //   SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // </copyright>
 // <summary>
-//   Class containing tests to verify the behavior of the <see cref="Rope" /> constructors.
+//   Defines the RopeDepthAndWidthTests type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -31,45 +31,76 @@ namespace OtherStructures.Tests.BinaryTrees.RopeTests
 	using OtherStructures.BinaryTrees;
 
 	/// <summary>
-	/// Class containing tests to verify the behavior of the <see cref="Rope"/> constructors.
+	/// Class containing tests to verify the behavior of the <see cref="Rope.Depth"/> and <see cref="Rope.Width"/>
+	/// properties.
 	/// </summary>
 	[TestClass]
-	public class RopeConstructorTests
+	public class RopeDepthAndWidthTests
 	{
 		/// <summary>
-		/// Verifies that <see cref="Rope(string)"/> properly sets the <see cref="Rope.Value"/> and <see cref="Rope.Length"/> values
-		/// correctly.
+		/// Verifies that the <see cref="Rope.Depth"/> return 1 when the target <see cref="Rope"/> doesn't have any
+		/// "left" children.
 		/// </summary>
 		[TestMethod]
-		public void ConstructorSetsFieldsCorrectly()
+		public void DepthReturns0WhenNoLeftNodes()
 		{
 			// arrange
-			const string RopeString = "testing";
+			var newRope = new Rope("test");
 
 			// act
-			var actual = new Rope(RopeString);
+			var actual = newRope.Depth;
 
 			// assert
-			Assert.AreEqual(RopeString, actual.Value);
-			Assert.AreEqual(RopeString.Length, actual.Length);
+			Assert.AreEqual(1, actual);
 		}
 
 		/// <summary>
-		/// Verifies that <see cref="Rope(char[])"/> properly sets the <see cref="Rope.Value"/> and <see cref="Rope.Length"/> values
-		/// correctly.
+		/// Verifies that the <see cref="Rope.Depth"/> return the count of "left" children for the <see cref="Rope"/>.
 		/// </summary>
 		[TestMethod]
-		public void ConstructorByCharArraySetsFieldsCorrectly()
+		public void DepthReturnsCorrectValueWhenLeftNodesExist()
 		{
 			// arrange
-			var ropeString = "testing".ToCharArray();
+			var rootRope = new Rope("root") { Left = new Rope("first") { Left = new Rope("second") } };
 
 			// act
-			var actual = new Rope(ropeString);
+			var actual = rootRope.Depth;
 
 			// assert
-			Assert.AreEqual(new string(ropeString), actual.Value);
-			Assert.AreEqual(ropeString.Length, actual.Length);
+			Assert.AreEqual(3, actual);
+		}
+
+		/// <summary>
+		/// Verifies that the <see cref="Rope.Width"/> return 1 when the target <see cref="Rope"/> doesn't have any
+		/// "next siblings".
+		/// </summary>
+		[TestMethod]
+		public void WidthReturns1WhenNoNextSiblings()
+		{
+			// arrange
+			var newRope = new Rope("test");
+
+			// act
+			var actual = newRope.Width;
+
+			// assert
+			Assert.AreEqual(1, actual);
+		}
+
+		/// <summary>
+		/// Verifies that the <see cref="Rope.Width"/> return the count of "next siblings" for the <see cref="Rope"/>.
+		/// </summary>
+		[TestMethod]
+		public void WidthReturnsCorrectValueWhenNextSiblingsExist()
+		{
+			// arrange
+			var rootRope = new Rope("root") { NextSibling = new Rope("first") { NextSibling = new Rope("second") } };
+
+			// act
+			var actual = rootRope.Width;
+
+			// assert
+			Assert.AreEqual(3, actual);
 		}
 	}
 }
