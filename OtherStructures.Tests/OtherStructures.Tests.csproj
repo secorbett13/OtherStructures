@@ -50,6 +50,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Arrays\LinkedListTests\LinkedListAddTests.cs" />
+    <Compile Include="Arrays\LinkedListTests\LinkedListRemoveTests.cs" />
     <Compile Include="BinaryTrees\RopeTests\RopeAppendTests.cs" />
     <Compile Include="BinaryTrees\RopeTests\RopeDepthAndWidthTests.cs" />
     <Compile Include="BinaryTrees\RopeTests\RopeConstructorTests.cs" />
