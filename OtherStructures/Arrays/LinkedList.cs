@@ -27,6 +27,9 @@
 namespace OtherStructures.Arrays
 {
 	using System;
+	using System.Collections;
+	using System.Collections.Generic;
+	using System.Runtime.Remoting.Messaging;
 
 	/// <summary>
 	/// Implementation of a linked list structure. Linked lists are lists of a common type where each node connects
@@ -35,7 +38,8 @@ namespace OtherStructures.Arrays
 	/// <typeparam name="T">
 	/// The type of entity being stored in the linked list
 	/// </typeparam>
-	public class LinkedList<T> where T : IEquatable<T>
+	public class LinkedList<T> : IEnumerable<T>
+		where T : IEquatable<T>
 	{
 		/// <summary>
 		/// Gets the first element in the linked list.
@@ -50,7 +54,7 @@ namespace OtherStructures.Arrays
 		/// <summary>
 		/// Gets the number of items in the list.
 		/// </summary>
-		public int Length { get; private set; }
+		public int Count { get; private set; }
 
 		/// <summary>
 		/// Adds a new <see cref="LinkedListNode{T}"/> to the head of the linked list.
@@ -73,7 +77,7 @@ namespace OtherStructures.Arrays
 				this.First = newNode;
 			}
 
-			this.Length++;
+			this.Count++;
 		}
 
 		/// <summary>
@@ -98,7 +102,7 @@ namespace OtherStructures.Arrays
 
 			this.Last = newNode;
 
-			this.Length++;
+			this.Count++;
 		}
 
 		/// <summary>
@@ -106,15 +110,15 @@ namespace OtherStructures.Arrays
 		/// </summary>
 		public void RemoveFirst()
 		{
-			if (this.Length == 0)
+			if (this.Count == 0)
 			{
 				return;
 			}
 
 			this.First = this.First.Next;
-			this.Length--;
+			this.Count--;
 
-			if (this.Length == 0)
+			if (this.Count == 0)
 			{
 				this.Last = null;
 			}
@@ -125,12 +129,12 @@ namespace OtherStructures.Arrays
 		/// </summary>
 		public void RemoveLast()
 		{
-			if (this.Length == 0)
+			if (this.Count == 0)
 			{
 				return;
 			}
 
-			if (this.Length == 1)
+			if (this.Count == 1)
 			{
 				this.First = null;
 				this.Last = null;
@@ -148,7 +152,7 @@ namespace OtherStructures.Arrays
 				this.Last = current;
 			}
 
-			this.Length--;
+			this.Count--;
 		}
 
 		public void Find(T entity)
@@ -156,21 +160,46 @@ namespace OtherStructures.Arrays
 			throw new NotImplementedException();
 		}
 
-		public void Enumerate()
+
+		/// <inheritdoc />
+		IEnumerator<T> IEnumerable<T>.GetEnumerator()
 		{
-			throw new NotImplementedException();
+			var current = this.First;
+
+			while (current != null)
+			{
+				yield return current.Value;
+				current = current.Next;
+			}
 		}
+
+		/// <inheritdoc />
+		IEnumerator IEnumerable.GetEnumerator()
+		{
+			return ((IEnumerable<T>)this).GetEnumerator();
+		}
+
+
+		#region ICollection methods
+		// Count is already implemented
+		// public void Add(T entity)
+		// public bool Contains(T entity)
+		// public void CopyTo(T[] array, int arrayIndex)
+		// public bool IsReadonly {get;}
+		// public bool Remove(T entity)
+		// public bool Clear()
+		#endregion
 	}
 
 	public class LinkedListNode<TNode>
 	{
-		public TNode Value { get; private set; }
-
-		public LinkedListNode<TNode> Next { get; set; }
-
 		public LinkedListNode(TNode entity)
 		{
 			this.Value = entity;
 		}
+
+		public TNode Value { get; private set; }
+
+		public LinkedListNode<TNode> Next { get; set; }
 	}
 }

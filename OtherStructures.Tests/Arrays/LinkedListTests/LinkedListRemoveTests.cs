@@ -63,12 +63,12 @@ namespace OtherStructures.Tests.Arrays.LinkedListTests
 
 			// act
 			var startHeadVal = this.testObject.First.Value;
-			var startCount = this.testObject.Length;
+			var startCount = this.testObject.Count;
 
 			this.testObject.RemoveFirst();
 
 			var endHeadVal = this.testObject.First.Value;
-			var endCount = this.testObject.Length;
+			var endCount = this.testObject.Count;
 
 			// assert
 			Assert.AreEqual(2, startHeadVal, "startHeadVal");
@@ -116,12 +116,12 @@ namespace OtherStructures.Tests.Arrays.LinkedListTests
 
 			// act
 			var startLastVal = this.testObject.Last;
-			var startCount = this.testObject.Length;
+			var startCount = this.testObject.Count;
 
 			this.testObject.RemoveLast();
 
 			var endLastVal = this.testObject.Last;
-			var endCount = this.testObject.Length;
+			var endCount = this.testObject.Count;
 
 			// assert
 			Assert.AreEqual(expectedStartLast, startLastVal, "startLastVal");

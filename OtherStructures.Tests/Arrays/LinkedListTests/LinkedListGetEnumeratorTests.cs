@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="LinkedListAddTests.cs" company="Scott Corbett">
+// <copyright file="LinkedListGetEnumeratorTests.cs" company="Scott Corbett">
 //   Copyright (c) 2014, Scott Corbett
 //   
 //   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -20,7 +20,7 @@
 //   SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // </copyright>
 // <summary>
-//   Defines the LinkedListAddTests type.
+//   Defines the LinkedListGetEnumeratorTests type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -31,78 +31,48 @@ namespace OtherStructures.Tests.Arrays.LinkedListTests
 	using OtherStructures.Arrays;
 
 	/// <summary>
-	/// Class containing tests to verify the behavior of the <see cref="LinkedList{T}"/> "add" method
+	/// Class containing tests to verify the behavior of the <see cref="LinkedList{T}.GetEnumerator"/> method.
 	/// </summary>
 	[TestClass]
-	public class LinkedListAddTests
+	public class LinkedListGetEnumeratorTests
 	{
 		/// <summary>
-		/// Verifies that the <see cref="LinkedList{T}.AddFront"/> adds the item to the head of the list.
+		/// The object against which the tests will be run.
 		/// </summary>
-		[TestMethod]
-		public void AddFrontInsertsItemAtEndOfList()
-		{
-			// arrange
-			var list = new LinkedList<int>();
-
-			// act
-			list.AddFront(1);
-			list.AddFront(2);
-
-			// assert
-			Assert.AreEqual(2, list.First.Value);
-			Assert.AreEqual(2, list.Count);
-		}
+		private LinkedList<int> testObject;
 
 		/// <summary>
-		/// Verifies that <see cref="LinkedList{T}.AddFront"/> sets <see cref="LinkedList{T}.Last"/> correctly
-		/// when called on an empty list.
+		/// Initializes objects used during the execution of the test.
+		/// </summary>
+		[TestInitialize]
+		public void TestInitialize()
+		{
+			this.testObject = new LinkedList<int>();
+		}
+		
+		/// <summary>
+		/// Verifies that the method under test returns the expected result.
 		/// </summary>
 		[TestMethod]
-		public void AddFrontSetsLastItem()
+		public void GetEnumeratorReturnsExpectedResult()
 		{
 			// arrange
-			var list = new LinkedList<int>();
+			var expected = new[] { 1, 10, 100 };
+			var actual = new int[3];
+
+			this.testObject.AddFront(expected[0]);
+			this.testObject.AddFront(expected[1]);
+			this.testObject.AddFront(expected[2]);
 
 			// act
-			list.AddFront(1);
+			var count = 0;
+			foreach (var i in this.testObject)
+			{
+				actual[count++] = i;
+			}
 
 			// assert
-			Assert.AreEqual(1, list.Last.Value);
-		}
-
-		/// <summary>
-		/// Verifies that the <see cref="LinkedList{T}.AddEnd"/> sets the <see cref="LinkedList{T}.First"/> instance
-		/// properly.
-		/// </summary>
-		[TestMethod]
-		public void AddEndOnEmptyListSetsFirstCorrectly()
-		{
-			// arrange
-			var list = new LinkedList<int>();
-
-			// act
-			list.AddEnd(1);
-
-			// assert
-			Assert.AreEqual(1, list.First.Value);
-		}
-
-		/// <summary>
-		/// Verifies that the <see cref="LinkedList{T}.AddEnd"/> adds the item to the tail of the list.
-		/// </summary>
-		[TestMethod]
-		public void AddEndInsertsItemAtEndOfList()
-		{
-			var list = new LinkedList<int>();
-
-			// act
-			list.AddEnd(1);
-			list.AddEnd(2);
-
-			// assert
-			Assert.AreEqual(2, list.Last.Value);
-			Assert.AreEqual(2, list.Count);
+			CollectionAssert.AreEquivalent(expected, actual);
 		}
 	}
 }
