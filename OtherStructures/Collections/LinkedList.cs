@@ -24,7 +24,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace OtherStructures.Arrays
+namespace OtherStructures.Collections
 {
 	using System;
 	using System.Collections;

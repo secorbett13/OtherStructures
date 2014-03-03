@@ -50,9 +50,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Arrays\LinkedListTests\LinkedListAddTests.cs" />
-    <Compile Include="Arrays\LinkedListTests\LinkedListGetEnumeratorTests.cs" />
-    <Compile Include="Arrays\LinkedListTests\LinkedListRemoveTests.cs" />
+    <Compile Include="Collections\LinkedListTests\LinkedListAddTests.cs" />
+    <Compile Include="Collections\LinkedListTests\LinkedListGetEnumeratorTests.cs" />
+    <Compile Include="Collections\LinkedListTests\LinkedListRemoveTests.cs" />
     <Compile Include="BinaryTrees\RopeTests\RopeAppendTests.cs" />
     <Compile Include="BinaryTrees\RopeTests\RopeDepthAndWidthTests.cs" />
     <Compile Include="BinaryTrees\RopeTests\RopeConstructorTests.cs" />
@@ -64,6 +64,9 @@
       <Project>{95B5DCAA-51D9-4524-A657-80B75837BA6F}</Project>
       <Name>OtherStructures</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Arrays\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

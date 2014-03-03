@@ -29,6 +29,7 @@ namespace OtherStructures.Tests.Arrays.LinkedListTests
 	using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 	using OtherStructures.Arrays;
+	using OtherStructures.Collections;
 
 	/// <summary>
 	/// Class containing tests to verify the behavior of the <see cref="LinkedList{T}"/> "remove" methods.

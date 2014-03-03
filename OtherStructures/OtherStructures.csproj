@@ -40,7 +40,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Arrays\GapBuffer.cs" />
-    <Compile Include="Arrays\LinkedList.cs" />
+    <Compile Include="Collections\LinkedList.cs" />
+    <Compile Include="Collections\Queue.cs" />
+    <Compile Include="Collections\Stack.cs" />
     <Compile Include="BinaryTrees\Rope.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
