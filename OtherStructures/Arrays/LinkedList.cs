@@ -29,7 +29,6 @@ namespace OtherStructures.Arrays
 	using System;
 	using System.Collections;
 	using System.Collections.Generic;
-	using System.Runtime.Remoting.Messaging;
 
 	/// <summary>
 	/// Implementation of a linked list structure. Linked lists are lists of a common type where each node connects
@@ -38,6 +37,10 @@ namespace OtherStructures.Arrays
 	/// <typeparam name="T">
 	/// The type of entity being stored in the linked list
 	/// </typeparam>
+	/// <remarks>
+	/// This implementation should not be used for production code. The .NET framework provides an implementation of this
+	/// class that is almost certainly a lot better than what's found here.
+	/// </remarks>
 	public class LinkedList<T> : IEnumerable<T>
 		where T : IEquatable<T>
 	{
