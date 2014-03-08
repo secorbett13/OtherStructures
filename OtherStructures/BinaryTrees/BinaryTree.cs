@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Stack.cs" company="Scott Corbett">
+// <copyright file="BinaryTree.cs" company="Scott Corbett">
 //   Copyright (c) 2014, Scott Corbett
 //   
 //   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -20,61 +20,43 @@
 //   SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // </copyright>
 // <summary>
-//   Defines the Stack type.
+//   Defines the BinaryTree type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace OtherStructures.Collections
+namespace OtherStructures.BinaryTrees
 {
+	using System;
 	using System.Collections.Generic;
 
 	/// <summary>
-	/// Class defining a stack type data structure. A stack implemments "Last In, First Out" behavior for its elements.
-	/// This means that the first item put onto the stack will be the last item taken off of the stack.
+	/// Implementation of a generic binary tree structure.
 	/// </summary>
 	/// <typeparam name="T">
-	/// The type of entity making up the elements of the stack
+	/// The type of entity stored in each node of the tree
 	/// </typeparam>
-	/// <remarks>
-	/// This implementation should not be used for production code. The .NET framework provides an implementation of this
-	/// class that is almost certainly a lot better than what's found here.
-	/// </remarks>
-	public class Stack<T> : IEnumerable<T>
+	public class BinaryTree<T> : IEnumerable<T>
+		where T : IComparable<T>
 	{
 		/// <summary>
-		/// The array of backing items for the stack.
+		/// Gets the head or root node of the tree.
 		/// </summary>
-		/// <remarks>
-		/// The array is initialized to avoid special cases in the implementation code.
-		/// </remarks>
-		private T[] items = new T[0];
+		public BinaryTreeNode<T> Head { get; private set; }
+
+		public BinaryTreeNode<T> Find(BinaryTreeNode<T> node, T value)
+		{
+			throw new NotImplementedException();
+		}
 
 		/// <summary>
-		/// The number of items currently stored in the array.
-		/// </summary>
-		private int size;
-
-		// count
-		// push
-		// pop
-		// peek
-		// clear
-		// contains
-		// TrimExcess
-		// private resize
-
-		/// <summary>
-		/// Enumerates each item in the stack in a LIFO order. The stack remains unaltered.
+		/// Enumerates each item in the stack in a FIFO order. The queue remains unaltered.
 		/// </summary>
 		/// <returns>
 		/// The <see cref="IEnumerator{T}"/>.
 		/// </returns>
 		public IEnumerator<T> GetEnumerator()
 		{
-			for (var i = this.size - 1; i >= 0; i--)
-			{
-				yield return this.items[i];
-			}
+			throw new NotImplementedException();
 		}
 
 		/// <inheritdoc />
@@ -82,5 +64,35 @@ namespace OtherStructures.Collections
 		{
 			return this.GetEnumerator();
 		}
+	}
+
+	/// <summary>
+	/// The binary tree node.
+	/// </summary>
+	/// <typeparam name="TNode">
+	/// The type of entity encapsulated by the node
+	/// </typeparam>
+	public class BinaryTreeNode<TNode>
+		where TNode : IComparable<TNode>
+	{
+		/// <summary>
+		/// Gets the value of the entity stored in the node.
+		/// </summary>
+		public TNode Value { get; private set; }
+
+		/// <summary>
+		/// Gets or sets the parent <see cref="BinaryTreeNode{T}"/> of the current node.
+		/// </summary>
+		public BinaryTreeNode<TNode> Parent { get; set; } 
+
+		/// <summary>
+		/// Gets or sets the left child of the <see cref="BinaryTreeNode{T}"/>.
+		/// </summary>
+		public BinaryTreeNode<TNode> Left { get; set; }
+
+		/// <summary>
+		/// Gets or sets the right child of the <see cref="BinaryTreeNode{T}"/>.
+		/// </summary>
+		public BinaryTreeNode<TNode> Right { get; set; }
 	}
 }

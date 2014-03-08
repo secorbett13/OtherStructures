@@ -40,6 +40,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Arrays\GapBuffer.cs" />
+    <Compile Include="BinaryTrees\BinarySearchTree.cs" />
+    <Compile Include="BinaryTrees\BinaryTree.cs" />
     <Compile Include="Collections\LinkedList.cs" />
     <Compile Include="Collections\Queue.cs" />
     <Compile Include="Collections\Stack.cs" />
